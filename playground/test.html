@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RunFood Template Processor</title>
+    <link href="./page-look.css" rel="stylesheet" />
+    <script>
+      function TO_POS_COMMANDS() {
+        document.getElementById("iframe").contentWindow.postMessage({
+          type: "TO_POS_COMMANDS",
+          payload: {
+            pos_lang: "epson",
+            cut: true,
+            beep: [3, 2],
+            image_quality: 1,
+          },
+        });
+      }
+    </script>
+    <script src="./test.js" type="text/javascript"></script>
+    <script src="./message-callback.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: row">
+      <div style="flex: 1; overflow: auto">
+        <h3 style="text-align: left">Origen (oculto)</h3>
+        <div class="page-preview-layout">
+          <div id="frame-output-1" class="page-preview-paper">
+            <iframe class="iframe" frameborder="0" id="iframe" src="/"></iframe>
+          </div>
+        </div>
+        <h3>Origen 2(visible)</h3>
+        <div id="frame-output-2"></div>
+      </div>
+      <div id="message_queue" style="flex: 1; overflow: auto">
+        <button onclick="RENDER()">Ejecutar RENDER</button>
+        <button onclick="TO_POS_COMMANDS()">Ejecutar TO_POS_COMMANDS</button>
+        <button onclick="TO_IMAGE()">Ejecutar TO_IMAGE</button>
+        <h6>Message queue</h6>
+      </div>
+    </div>
+  </body>
+</html>

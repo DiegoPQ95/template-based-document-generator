@@ -1,0 +1,28 @@
+{
+  "name": "runfood-template-iframe",
+  "version": "1.0.0",
+  "homepage": "./",
+  "description": "Es un sitio diseñado para trabajar dentro de un iframe que procesar los documentos para imprimir",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack serve --open --config ./webpack.dev.js"
+  },
+  "author": "Diego Paguay Q.",
+  "license": "ISC",
+  "dependencies": {
+    "handlebars": "^4.7.8",
+    "html2canvas": "^1.4.1",
+    "node-thermal-printer": "^4.4.2"
+  },
+  "devDependencies": {
+    "css-loader": "^5.2.7",
+    "html-webpack-plugin": "^4.5.2",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.4.0",
+    "typescript": "^5.5.3",
+    "webpack": "^4.47.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.15.2"
+  }
+}

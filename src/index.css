@@ -1,0 +1,39 @@
+:root{
+    --document-font-size: 16px;
+    --document-width: 600px;
+}
+html,body{
+    margin: 0px;
+    padding: 0px;
+    width: var(--document-width);
+    height: auto;
+}
+
+html{
+    font-size: var(--document-font-size);
+}
+
+#template_target{
+    max-width: var(--document-width);
+    min-width: var(--document-width);
+    width: var(--document-width);
+}
+
+@media print {
+    html,body{
+        max-width: var(--document-width);
+        min-width: var(--document-width);
+        width: var(--document-width);
+        overflow: hidden;
+    }
+}
+
+*{
+    font-family: Raleway Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
