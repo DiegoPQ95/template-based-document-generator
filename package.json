@@ -1,5 +1,5 @@
 {
-  "name": "runfood-template-iframe",
+  "name": "@runfoodapp/template-based-document-generator",
   "version": "1.0.0",
   "homepage": "./",
   "description": "Es un sitio diseñado para trabajar dentro de un iframe que procesar los documentos para imprimir",

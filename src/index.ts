@@ -33,7 +33,7 @@ function NotifyReadyToParent() {
     if (window.parent == window) return;
     const messageToSend: Action = {
         type: 'READY'
-        , source: "runfood-template-processor"
+        , source: "@runfoodapp/template-based-document-generator"
     };
 
     // Enviar mensaje al window padre
@@ -50,7 +50,7 @@ function registerPostMessage<T extends any>(type: string, handler: (payload: T) 
                 event.source?.postMessage({
                     type: type + ".COMPLETED",
                     payload,
-                    source: "runfood-template-processor"
+                    source: "@runfoodapp/template-based-document-generator"
                 } as Action)
             }).catch(error => {
                 event.source?.postMessage({
@@ -61,7 +61,7 @@ function registerPostMessage<T extends any>(type: string, handler: (payload: T) 
                         code: error.code,
                         stack: error.stack
                     },
-                    source: "runfood-template-processor"
+                    source: "@runfoodapp/template-based-document-generator"
                 } as Action)
             })
     });
