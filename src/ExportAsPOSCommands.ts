@@ -8,6 +8,7 @@ interface ExportOptions {
     beep?: [number, number]
     /** Si quieres convertir la imagen a escala de grises */
     grayscale?: boolean;
+    cash_drawer?: boolean;
 }
 
 export async function ExportAsPOSCommands(options: ExportOptions) {
@@ -25,9 +26,10 @@ export async function ExportAsPOSCommands(options: ExportOptions) {
     const buff = await (printer as any).printer.printImageBuffer(imageData.width, imageData.height, imageData.data);
     printer.append(buff);
 
-    if (options.cut) printer.cut( {
+    if (options.cut) printer.cut({
         verticalTabAmount: 0
     });
+    if (options.cash_drawer) printer.openCashDrawer();
 
     const buffer = printer.getBuffer();
     return buffer;
