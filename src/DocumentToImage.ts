@@ -1,9 +1,8 @@
-import { template } from "handlebars";
-
 declare const html2canvas: typeof import("html2canvas").default;
 
 export interface ImageOptions {
     grayscale?: boolean;
+    imageScale?: number;
 }
 
 export async function DocumentToImage(options: ImageOptions, type: "base64"): Promise<string>
@@ -17,6 +16,7 @@ export async function DocumentToImage(options: ImageOptions, type: "base64" | "b
 
     const canvas = await html2canvas(templateEl, {
         backgroundColor: "#fff"
+        , scale: options.imageScale || 1
     });
 
     if (!["base64", "buffer", "imageData"].includes(type)) throw new RangeError(`Export image type '${type}' is not allowed`);
