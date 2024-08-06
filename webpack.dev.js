@@ -1,5 +1,4 @@
 const defaults = require("./webpack.config");
-const path = require("path");
 
 module.exports = {
   ...defaults,
