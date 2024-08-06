@@ -100,5 +100,6 @@ interface POSCommandsPayload {
 ```
 
 ## FIXME:
-[] Para que el proyecto sea compatible con `es3` necesitas quitar el uso de object-spread (`var a = { ...b }` ) en la dependencia `node-thermal-printer`.
-[] La dependencia `node-thermal-printer` no tiene mucha sensibilidad a los grises, practicamente los ignora al momento de traducir la imagen. Sin embargo otras librerías procesan correctamente las imagenes (vease: [Solución de ESCPOS-ThermalPrinter-Android en JAVA](https://github.com/DantSu/ESCPOS-ThermalPrinter-Android/blob/f61030e46269319e2d72b938501676420657b9c8/escposprinter/src/main/java/com/dantsu/escposprinter/EscPosPrinterCommands.java#L166))
+[ ] Para que el proyecto sea compatible con `es3` necesitas quitar el uso de object-spread (`var a = { ...b }` ) en la dependencia `node-thermal-printer`.
+
+[ ] La dependencia `node-thermal-printer` no tiene mucha sensibilidad a los grises, practicamente los ignora al momento de traducir la imagen. Sin embargo otras librerías procesan correctamente las imagenes (vease: [Solución de ESCPOS-ThermalPrinter-Android en JAVA](https://github.com/DantSu/ESCPOS-ThermalPrinter-Android/blob/f61030e46269319e2d72b938501676420657b9c8/escposprinter/src/main/java/com/dantsu/escposprinter/EscPosPrinterCommands.java#L166))
