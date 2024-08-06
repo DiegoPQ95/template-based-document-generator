@@ -9,9 +9,9 @@ Este proyecto está diseñado para ejecutarse dentro de un iframe. Se interactur
 
 ### Formato del mensaje
 Se presta la idea de `action` (redux):
-```
-{
-    "type": "NOMBRE_DE_LA_ACCIÓN",
+```typescript
+interface Action{
+    "type": string,
     "payload": any | null | undefined,
     "source": "@runfoodapp/template-based-document-generator",
     "threadId" : string | undefined
@@ -36,7 +36,7 @@ Se presta la idea de `action` (redux):
 
 ## tipos de datos:
 
-```
+```typescript
 interface RenderDocumentPayload {
     /** Titulo del documento HTML **/
     title: string
@@ -58,7 +58,7 @@ interface RenderDocumentPayload {
 }
 ```
 
-```
+```typescript
 interface RenderDocumentCompletedPayload {
     /** texto HTML de plantilla generada **/
     content: string
@@ -74,7 +74,7 @@ interface RenderDocumentCompletedPayload {
 }
 ```
 
-```
+```typescript
 interface Error {
     message : string,
     name : string,
@@ -82,7 +82,7 @@ interface Error {
 }
 ```
 
-```
+```typescript
 interface POSCommandsPayload {
     /** Lenguaje de comandos **/
     pos_lang: "epson" | "tanca" | "star" | "daruma"
