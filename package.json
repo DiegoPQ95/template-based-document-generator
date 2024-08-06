@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "homepage": "./",
   "description": "Es un sitio diseñado para trabajar dentro de un iframe que procesar los documentos para imprimir",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
-    "build": "webpack --mode production",
+    "empty_dist_dir": "rmdir /s /q dist 2>nul && mkdir dist",
+    "build": "npm run empty_dist_dir && webpack --mode production",
     "start": "webpack serve --open --config ./webpack.dev.js"
   },
   "author": "Diego Paguay Q.",
