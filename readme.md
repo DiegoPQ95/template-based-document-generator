@@ -1,4 +1,4 @@
-# template-iframe
+# @runfoodapp/template-based-document-generator
 
 Este proyecto permite generar un documento como HTML, como imagen o como POS Commands (en lenguajeS `epson`
 `tanca`
