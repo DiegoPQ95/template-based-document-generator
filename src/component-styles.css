@@ -1,0 +1,102 @@
+*{
+    font-family: Raleway Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+table {
+    width: 100%;
+    border-width:0px;
+    border:0px;
+}
+
+hr {
+    margin-top: calc( var(--document-font-size) / 2);
+    margin-top: 0.5em;
+    margin-bottom: calc( var(--document-font-size) / 2);
+    margin-bottom: 0.5em;
+}
+
+ol,ul {
+    padding-left: var(--document-font-size);
+    padding-left: 1.7em;
+}
+
+td,
+th {
+  vertical-align: baseline;
+}
+
+
+
+/** HELPERS **/
+.right {
+    text-align: right;
+}
+.left {
+    text-align: left;
+}
+.center { 
+    text-align: center;
+}
+.uppercase{
+    text-transform: uppercase;
+}
+
+
+
+
+
+/** componentes UI predefinidos **/
+table.table-bordered { 
+    border-collapse: collapse;
+}
+  
+table.table-bordered td, 
+table.table-bordered th {
+    border: 1px solid black;
+}
+
+table.table-striped {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+table.table-striped th, 
+table.table-striped td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+table.table-striped tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
+
+.barcode-128{
+    position: relative; 
+    font-size:2em;
+    display:block;
+}
+.barcode-128::before {
+    content: attr(data-text);
+    font-family: "Libre Barcode 128", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    transform: scale(1.3);
+    font-size:inherit;
+    white-space: nowrap;
+}
+.barcode-128.legend::after {
+  content: attr(data-text);
+  display: block; /* Hacemos que el contenido generado sea un bloque */
+  font-size: 0.4em; /* Tamaño de fuente más pequeño para simular un elemento <small> */
+  color: gray; /* Color de texto opcional para diferenciarlo */
+  text-align: center;
+  position: absolute;
+  top: calc(2.1em + 10px);
+  width:100%;
+}
+

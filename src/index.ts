@@ -1,4 +1,5 @@
 import "./index.css";
+import "./component-styles.css";
 
 /// <reference path="./types.d.ts" />
 import { ExportAsImage } from "./ExportAsImage";

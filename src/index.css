@@ -1,12 +1,14 @@
 :root{
     --document-font-size: 16px;
     --document-width: 600px;
+    --html-print-scale: 1;
 }
 html,body{
     margin: 0px;
     padding: 0px;
     width: var(--document-width);
     height: auto;
+    overflow: hidden;
 }
 
 html{
@@ -26,14 +28,10 @@ html{
         width: var(--document-width);
         overflow: hidden;
     }
-}
-
-*{
-    font-family: Raleway Arial, Helvetica, sans-serif;
-    margin: 0px;
-    padding: 0px;
-}
-
-.uppercase{
-    text-transform: uppercase;
+    @page{
+        margin:0px;
+    }
+    body{
+        transform:scale( var(--html-print-scale) );
+    }
 }
