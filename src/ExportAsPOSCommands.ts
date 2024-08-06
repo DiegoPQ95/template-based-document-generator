@@ -18,12 +18,13 @@ export async function ExportAsPOSCommands(options: ExportOptions) {
     });
 
     if ((options.beep?.length || 0) >= 2) {
-        debugger;
         printer.beep(options.beep![0], options.beep![1]);
     }
     const imageData = await DocumentToImage(options, "imageData");
+    console.info(`[${new Date().toJSON()}] Image to data successfully. bytes: ${imageData.data.byteLength}`);
     // Si creo el buffer desde el objeto `printer` interno, no se necesita `pngjs`
     const buff = await (printer as any).printer.printImageBuffer(imageData.width, imageData.height, imageData.data);
+    console.info(`[${new Date().toJSON()}] images-as-buffer created successfully. bytes: ${buff.byteLength}`);
     printer.append(buff);
 
     if (options.cut) printer.cut({
@@ -31,6 +32,7 @@ export async function ExportAsPOSCommands(options: ExportOptions) {
     });
     if (options.cash_drawer) printer.openCashDrawer();
 
-    const buffer = printer.getBuffer();
-    return buffer;
+    const buf = printer.getBuffer();
+    console.info(`[${new Date().toJSON()}] document buffer created successfully. bytes: ${buf.byteLength}`);
+    return buf;
 }
