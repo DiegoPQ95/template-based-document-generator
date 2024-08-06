@@ -1,0 +1,7 @@
+node_modules
+.env*
+src/
+playground/
+webpack.*.js
+tsconfig.json
+.npmignore
