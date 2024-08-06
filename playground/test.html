@@ -26,17 +26,25 @@
       <div style="flex: 1; overflow: auto">
         <h3 style="text-align: left">Origen (oculto)</h3>
         <div class="page-preview-layout">
-          <div id="frame-output-1" class="page-preview-paper">
+          <div id="frame_container" class="page-preview-paper">
             <iframe class="iframe" frameborder="0" id="iframe" src="/"></iframe>
           </div>
         </div>
         <h3>Origen 2(visible)</h3>
-        <div id="frame-output-2"></div>
+        <div>
+          <div>
+            <div>
+              <div id="nested_component">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="message_queue" style="flex: 1; overflow: auto">
         <button onclick="RENDER()">Ejecutar RENDER</button>
         <button onclick="TO_POS_COMMANDS()">Ejecutar TO_POS_COMMANDS</button>
         <button onclick="TO_IMAGE()">Ejecutar TO_IMAGE</button>
+        <button onclick="MOVE_FRAME_BETWEEN_CONTAINERS()">MOVER A OTRO COMPONENTE</button>
         <h6>Message queue</h6>
       </div>
     </div>
