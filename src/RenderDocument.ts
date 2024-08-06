@@ -22,10 +22,22 @@ export async function RenderDocument(options: RenderDocument) {
 
     output.dataset.renderedAt = new Date().toJSON();
     output.innerHTML = handlebars_compile(options.data, options.content_template);
-    return output.innerHTML
+    await imagesLoaded();
+    return { content: output.innerHTML, html: document.documentElement.innerHTML, width: document.documentElement.offsetWidth, height: document.documentElement.offsetHeight }
 }
 
 function handlebars_compile(data: { [key: string]: any }, templatestr: string) {
     const template = handlebars.compile(templatestr);
     return template(data);
+}
+
+function imagesLoaded() {
+    const images = Array.from(document.querySelectorAll("div img")) as Array<HTMLImageElement>;
+    if (!images.length) return Promise.resolve();
+    // list all image widths and heights _after_ the images have loaded:
+    return Promise.all(images.map(im => new Promise(resolve => im.onload = resolve))).then(() => {
+        console.log("The images have loaded at last!\nHere are their dimensions (width,height):");
+        console.log(images.map(im => ([im.width, im.height])));
+    })
+
 }
