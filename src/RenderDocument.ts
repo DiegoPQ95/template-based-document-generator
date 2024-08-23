@@ -4,6 +4,7 @@ interface RenderDocument {
     title: string,
     content_template: string
     width: string
+    htmlPrintScale?: string | number,
     fontSize: string
     data: Object
 }
@@ -15,6 +16,11 @@ export async function RenderDocument(options: RenderDocument) {
     }
     if (options.fontSize) {
         document.documentElement.style.setProperty("--document-font-size", options.fontSize || "15px");
+    }
+    if (options.htmlPrintScale) {
+        document.documentElement.style.setProperty("--html-print-scale", options.htmlPrintScale.toString());
+    } else {
+        document.documentElement.style.setProperty("--html-print-scale", "1");
     }
 
     const output = document.getElementById(window.TEMPLATE_TARGET_ID);
@@ -32,12 +38,11 @@ function handlebars_compile(data: { [key: string]: any }, templatestr: string) {
 }
 
 function imagesLoaded() {
-    const images = Array.from(document.querySelectorAll("div img")) as Array<HTMLImageElement>;
+    const images = Array.from(document.querySelectorAll("svg,img")) as Array<HTMLImageElement>;
     if (!images.length) return Promise.resolve();
     // list all image widths and heights _after_ the images have loaded:
     return Promise.all(images.map(im => new Promise(resolve => im.onload = resolve))).then(() => {
-        console.log("The images have loaded at last!\nHere are their dimensions (width,height):");
-        console.log(images.map(im => ([im.width, im.height])));
+        console.debug && console.debug("The images have loaded at last!\nHere are their dimensions (width,height):");
+        console.debug && console.debug(images.map(im => ([im.width, im.height])));
     })
-
 }

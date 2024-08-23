@@ -1,4 +1,4 @@
-import { DocumentToImage } from "./DocumentToImage";
+import { DocumentToChunkImages } from "./DocumentToImage";
 
 declare const NodeThermalPrinter: typeof import("node-thermal-printer");
 
@@ -20,12 +20,14 @@ export async function ExportAsPOSCommands(options: ExportOptions) {
     if ((options.beep?.length || 0) >= 2) {
         printer.beep(options.beep![0], options.beep![1]);
     }
-    const imageData = await DocumentToImage(options, "imageData");
-    console.info(`[${new Date().toJSON()}] Image to data successfully. bytes: ${imageData.data.byteLength}`);
-    // Si creo el buffer desde el objeto `printer` interno, no se necesita `pngjs`
-    const buff = await (printer as any).printer.printImageBuffer(imageData.width, imageData.height, imageData.data);
-    console.info(`[${new Date().toJSON()}] images-as-buffer created successfully. bytes: ${buff.byteLength}`);
-    printer.append(buff);
+    const imageChunks = await DocumentToChunkImages(options);
+    console.debug && console.debug(`[${new Date().toJSON()}] Image to data successfully. bytes: ${imageChunks.reduce((a, b) => a + b.data.byteLength, 0)} / chunks: ${imageChunks.length}`);
+    for (const imageData of imageChunks) {
+        // Si creo el buffer desde el objeto `printer` interno, no se necesita `pngjs`
+        const buff = await (printer as any).printer.printImageBuffer(imageData.width, imageData.height, imageData.data);
+        console.debug && console.debug(`[${new Date().toJSON()}] images-as-buffer created successfully. bytes: ${buff.byteLength}`);
+        printer.append(buff);
+    }
 
     if (options.cut) printer.cut({
         verticalTabAmount: 0
@@ -33,6 +35,6 @@ export async function ExportAsPOSCommands(options: ExportOptions) {
     if (options.cash_drawer) printer.openCashDrawer();
 
     const buf = printer.getBuffer();
-    console.info(`[${new Date().toJSON()}] document buffer created successfully. bytes: ${buf.byteLength}`);
+    console.debug && console.debug(`[${new Date().toJSON()}] document buffer created successfully. bytes: ${buf.byteLength}`);
     return buf;
 }
