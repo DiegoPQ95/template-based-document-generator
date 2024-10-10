@@ -5,6 +5,7 @@ module.exports = {
   mode: "development",
   devServer: {
     static: "./playground",
+    hot: true,
     compress: true,
     port: 9000,
     historyApiFallback: true, // Para manejar el enrutamiento en aplicaciones SPA
