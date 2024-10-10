@@ -91,13 +91,14 @@ function RENDER() {
   });
 }
 
-function TO_IMAGE() {
+function TO_IMAGE(chunks) {
 
   const iframe = document.getElementById("iframe");
   iframe.contentWindow.postMessage({
     type: "TO_B64IMG",
     payload: {
-      grayscale: true
+      grayscale: true,
+      chunks: chunks
     }
   });
 }
