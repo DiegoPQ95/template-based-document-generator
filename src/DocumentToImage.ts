@@ -74,7 +74,7 @@ export async function DocumentToChunkImages(options: ImageOptions, chunkHeight: 
             ctx.drawImage(
                 canvas,
                 0, yOffset,                   // Source x, y
-                canvas.width, chunkHeight,    // Source width, height
+                canvas.width, canvasChunk.height,    // Source width, height
                 0, 0,                         // Destination x, y
                 canvas.width, canvasChunk.height // Destination width, height
             );
