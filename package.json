@@ -10,8 +10,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "empty_dist_dir": "rmdir /s /q dist 2>nul && mkdir dist",
-    "build": "npm run empty_dist_dir && webpack --mode production",
+    "build": "webpack --mode production",
     "start": "webpack serve --open --config ./webpack.dev.js"
   },
   "author": "Diego Paguay Q.",
@@ -22,6 +21,7 @@
     "node-thermal-printer": "^4.4.2"
   },
   "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^5.2.7",
     "html-webpack-plugin": "^4.5.2",
     "style-loader": "^2.0.0",

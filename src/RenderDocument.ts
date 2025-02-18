@@ -38,6 +38,7 @@ function handlebars_compile(data: { [key: string]: any }, templatestr: string) {
 }
 
 function imagesLoaded() {
+    console.debug && console.debug("Scanning images started");
     const images = Array.from(document.querySelectorAll("svg,img")) as Array<HTMLImageElement>;
     if (!images.length) return Promise.resolve();
     // list all image widths and heights _after_ the images have loaded:
