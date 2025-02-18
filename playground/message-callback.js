@@ -36,7 +36,7 @@ window.addEventListener("message", function (event) {
     }
     if (event.data.type === "TO_POS_COMMANDS.COMPLETED") {
         const base64String = btoa(String.fromCharCode.apply(null, event.data.payload));
-        window.latest_url = window.latest_url ?? "";
+        window.latest_url = window.latest_url ?? "http://localhost:2000/PRINT_SERVICE";
         const prompt = window.prompt("Ingresa la URL a la cual enviar", window.latest_url);
         if (!prompt) return;
         window.latest_url = prompt;

@@ -1,6 +1,6 @@
 {
   "name": "@runfoodapp/template-based-document-generator",
-  "version": "0.1.0",
+  "version": "0.2.2-beta",
   "homepage": "https://github.com/DiegoPQ95/template-based-document-generator",
   "description": "Sitio diseñado para trabajar dentro de un `iframe` que recibe plantillas y datos, las procesa y las convierte a imagen o comandos POS",
   "keywords": ["template", "print", "document", "generator", "pos", "esc-pos"],
@@ -17,8 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "handlebars": "^4.7.8",
-    "html2canvas": "^1.4.1",
-    "node-thermal-printer": "^4.4.2"
+    "html2canvas": "^1.4.1"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
