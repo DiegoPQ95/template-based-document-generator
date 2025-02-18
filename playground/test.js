@@ -1,70 +1,50 @@
-const content_template = ` <small>Fecha: {{ updatedAt }}</small>
-      <h1>{{ formaDespacho }}</h1>
-      <h3>PEDIDO #{{ numero}} </h3>
+const content_template = `<div style="text-align:center;margin:auto;">
+    <img width="400px" src="http://runfoodapp.com/cdn/runfood-bw-letters.jpg">
+</div>
+<center>
+    <p>PEDIDO #5</p>
+    <span style="background-color:black; color:white">COCINA</span>
+    </center>
+    <br>
 
-      <p>Usuario: {{Usuario}} 👋</p>
-      <ol>
-        <li>Hola mundo</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-        <li>Como estas?</li>
-      </ol>
-      <ul>
-        <li>Que onda</li>
-        <li>De que me sirve?</li>
-      </ul>
+                <center><p>NUEVO</p></center>
+            <table>
+                <tbody>
+                    <tr>
+                    <td style="width: 30px; text-align: left">
+                        +1
+                    </td>
+                    <td>
+                        <p>ALMUERZITO</p>
+<br>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="width: 30px; text-align: left">
+                        +1
+                    </td>
+                    <td>
+                        <p>ALMUERZITO</p>
+<br>
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
 
-      <div>
-      <span class='barcode-128 vertical-content' data-text="Hola Mundo"></span>
-      <div class='barcode-128 legend' data-text="123"></div>
-      <div class="qr-code" data-text="https://runfoodapp.com" size="300" ></div>
-      </div>
+        <br>
+    <p>Usuario: RUNFOOD</p>
+    <p>última modificación: 2025-02-17 22:33:44</p>
+    <style>
+    td,
+    th {
+        vertical-align: baseline;
+    }
+    </style>
 
-      <hr />
-      <table>
-      <thead>
-        <tr>
-          <th style="width:20%; min-width:20%; max-width:20%;" ></th>
-          <th style="width:80%; min-width:80%; max-width:80%" ></th>
-        </tr>
-      </thead>
-        <tbody>
-        {{#each detalle}}
-          <tr>
-            <td style="vertical-align:baseline;" ><h1>{{cantidad}}</h1></td>
-            <td>
-              <p class="uppercase">{{ descripcion }}</p>
-              <small>{{ observacion }}</small>
-              <code>idDetalle: {{ idDetalle }}</code>
-            </td>
-          </tr>
-          {{/each}}
-        </tbody>
-      </table>
-
-<br/>
-<br/>`
+<img height="300" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&amp;data=Example">`
 
 function RENDER() {
-  const width = 200
+  const width = 384
   document.getElementById("iframe").style.width = width + 60;
   document.getElementById("iframe").contentWindow.postMessage({
     type: "RENDER",
