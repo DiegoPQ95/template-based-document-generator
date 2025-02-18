@@ -53,9 +53,13 @@ export async function DocumentToChunkImages(options: ImageOptions, chunkHeight: 
     if (!templateEl) throw new Error("No se encontró el elemento para renderizar el documento");
     if (!templateEl.dataset.renderedAt) throw new Error("Primero ejecute la acción `RENDER antes de ejecutar esta nueva acción");
 
+    const queryParams = new URLSearchParams(location.search);
+
     return html2canvas(templateEl, {
         backgroundColor: "#fff"
         , scale: options.imageScale || 1
+        , allowTaint: queryParams.get("html2canvas.alllowTaint") == "1"
+        , useCORS: queryParams.get("html2canvas.useCORS") != "0"
     }).then(canvas => {
         const totalHeight = canvas.height;
         const chunkCount = Math.ceil(totalHeight / chunkHeight);
