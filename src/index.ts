@@ -20,7 +20,6 @@ async function Initialize() {
         const handlebars = (await import("handlebars")).default;
         global.handlebars = handlebars;
         global.html2canvas = (await import("html2canvas")).default;
-        global.NodeThermalPrinter = (await import("node-thermal-printer")).default;
         global.threadId = new URL(window.location.href).searchParams.get("thread-id") || "";
 
         setupHandlebars(handlebars);

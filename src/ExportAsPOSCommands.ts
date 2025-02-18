@@ -1,9 +1,10 @@
 import { DocumentToChunkImages } from "./DocumentToImage";
+import CreateCommandEncoder, { Types } from "./CommandEncoder";
+import { Cut, Drawer } from "./CommandEncoder/Actions";
 
-declare const NodeThermalPrinter: typeof import("node-thermal-printer");
 
 interface ExportOptions {
-    pos_lang: import("node-thermal-printer").PrinterTypes
+    pos_lang: Types
     cut?: boolean
     beep?: [number, number]
     /** Si quieres convertir la imagen a escala de grises */
@@ -12,29 +13,26 @@ interface ExportOptions {
 }
 
 export async function ExportAsPOSCommands(options: ExportOptions) {
-    const printer = new NodeThermalPrinter.ThermalPrinter({
-        type: options.pos_lang
-        , interface: undefined as any as string // si lo dejo en `undefined` no se utiliza ninguna función nativa
-    });
+
+    const encoder = CreateCommandEncoder(options.pos_lang);
+
 
     if ((options.beep?.length || 0) >= 2) {
-        printer.beep(options.beep![0], options.beep![1]);
+        encoder.beep(options.beep![0], options.beep![1]);
     }
     const imageChunks = await DocumentToChunkImages(options);
     console.debug && console.debug(`[${new Date().toJSON()}] Image to data successfully. bytes: ${imageChunks.reduce((a, b) => a + b.data.byteLength, 0)} / chunks: ${imageChunks.length}`);
     for (const imageData of imageChunks) {
         // Si creo el buffer desde el objeto `printer` interno, no se necesita `pngjs`
-        const buff = await (printer as any).printer.printImageBuffer(imageData.width, imageData.height, imageData.data);
-        console.debug && console.debug(`[${new Date().toJSON()}] images-as-buffer created successfully. bytes: ${buff.byteLength}`);
-        printer.append(buff);
+
+        encoder.image(imageData);
+        console.debug && console.debug(`[${new Date().toJSON()}] images-as-buffer created successfully. bytes: ${imageData.data.buffer.byteLength}`);
     }
 
-    if (options.cut) printer.cut({
-        verticalTabAmount: 0
-    });
-    if (options.cash_drawer) printer.openCashDrawer();
+    if (options.cut) encoder.cutter(Cut.Full);
+    if (options.cash_drawer) encoder.drawer(Drawer.First);
 
-    const buf = printer.getBuffer();
+    const buf = encoder.raw();
     console.debug && console.debug(`[${new Date().toJSON()}] document buffer created successfully. bytes: ${buf.byteLength}`);
     return buf;
 }
