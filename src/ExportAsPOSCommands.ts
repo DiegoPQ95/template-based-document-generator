@@ -33,11 +33,11 @@ export async function ExportAsPOSCommands(options: ExportOptions) {
         command_set.push(
             lang_lib.printImageBuffer(imageData.width, imageData.height, imageData.data)!
         )
-        console.debug && console.debug(`[${new Date().toJSON()}] images-as-buffer created successfully. bytes: ${imageData.data.buffer.byteLength}`);
+        console.debug && console.debug(`[${new Date().toJSON()}] images-as-buffer created successfully. bytes: ${imageData.data.byteLength}`);
     }
 
-    if (options.cut && "cut" in lang_lib) command_set.push(CutCommand({ verticalTabAmount: 1 }, lang_lib));
-    if (options.cash_drawer && "") command_set.push(OpenDrawerCommand(lang_lib));
+    if (options.cut) command_set.push(CutCommand({ verticalTabAmount: 1 }, lang_lib));
+    if (options.cash_drawer) command_set.push(OpenDrawerCommand(lang_lib));
 
     const buf = Buffer.concat(command_set);
     console.debug && console.debug(`[${new Date().toJSON()}] document buffer created successfully. bytes: ${buf.byteLength}`);
