@@ -36,7 +36,11 @@ window.addEventListener("message", function (event) {
     }
     if (event.data.type === "TO_POS_COMMANDS.COMPLETED") {
         const base64String = btoa(String.fromCharCode.apply(null, event.data.payload));
-        fetch("http://localhost:1000/PRINT_SERVICE", {
+        window.latest_url = window.latest_url ?? "";
+        const prompt = window.prompt("Ingresa la URL a la cual enviar", window.latest_url);
+        if (!prompt) return;
+        window.latest_url = prompt;
+        fetch(prompt, {
             mode: "cors",
             method: "POST",
             headers: {
@@ -44,7 +48,7 @@ window.addEventListener("message", function (event) {
             },
             body: JSON.stringify({
                 type: "factura",
-                b64_buffer: base64String,
+                base64_buffer: base64String,
             }),
         });
     }
