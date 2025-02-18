@@ -1,6 +1,6 @@
-const webpack = require("webpack");
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: './src/index.ts',
@@ -32,7 +32,8 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
   plugins: [
-    new HtmlWebpackPlugin({
+    new CleanWebpackPlugin()
+    , new HtmlWebpackPlugin({
       template: './src/index.html', // Archivo HTML de origen
       filename: 'index.html', // Nombre de archivo de salida
       inject: 'body', // Inyectar scripts al final del body
