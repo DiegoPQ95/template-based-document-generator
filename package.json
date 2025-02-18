@@ -17,8 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "handlebars": "^4.7.8",
-    "html2canvas": "^1.4.1",
-    "node-thermal-printer": "^4.4.2"
+    "html2canvas": "^1.4.1"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
